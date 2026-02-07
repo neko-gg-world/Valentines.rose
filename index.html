@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Rose Day 💗</title>
+
+  <!-- Cute thick font -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: 
+        linear-gradient(rgba(255, 230, 240, 0.85), rgba(255, 240, 245, 0.85)),
+        url("Gemini_Generated_Image_r4e1j6r4e1j6r4e1.png");
+      background-size: cover;
+      background-position: center;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .title {
+      font-size: 38px;
+      color: #ff9ecb;
+      min-height: 60px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: #ff9ecb;
+      border: none;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 18px;
+      font-size: 18px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 15px rgba(255, 105, 180, 0.35);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 22px rgba(255, 105, 180, 0.45);
+    }
+
+    .rose {
+      width: 220px;
+      margin: 30px auto 0;
+      display: none;
+      animation: popUp 1s ease forwards;
+    }
+
+    @keyframes popUp {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="title" id="typing"></div>
+
+    <button class="btn" id="revealBtn">Tap to reveal your rose 🌹</button>
+
+    <!-- Rose -->
+    <svg class="rose" id="rose" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stem -->
+      <rect x="96" y="120" width="8" height="140" fill="#2e8b57"/>
+
+      <!-- Leaves -->
+      <ellipse cx="70" cy="190" rx="35" ry="18" fill="#3cb371" transform="rotate(-20 70 190)"/>
+      <ellipse cx="130" cy="210" rx="35" ry="18" fill="#3cb371" transform="rotate(20 130 210)"/>
+
+      <!-- Rose petals -->
+      <circle cx="100" cy="90" r="38" fill="#b11226"/>
+      <circle cx="80" cy="80" r="30" fill="#c9182b"/>
+      <circle cx="120" cy="80" r="30" fill="#c9182b"/>
+      <circle cx="100" cy="60" r="26" fill="#d81f34"/>
+
+      <!-- Inner petal -->
+      <circle cx="100" cy="70" r="14" fill="#ff4d6d"/>
+    </svg>
+  </div>
+
+  <script>
+    // Typing animation
+    const text = "Happy Rose Day, Nuha 🌸";
+    const typingEl = document.getElementById("typing");
+    let index = 0;
+
+    function typeText() {
+      if (index < text.length) {
+        typingEl.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeText, 90);
+      }
+    }
+
+    typeText();
+
+    // Reveal rose
+    const btn = document.getElementById("revealBtn");
+    const rose = document.getElementById("rose");
+
+    btn.addEventListener("click", () => {
+      rose.style.display = "block";
+      btn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
