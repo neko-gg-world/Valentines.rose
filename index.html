@@ -27,14 +27,14 @@
 
     .card {
       background: white;
-      padding: 40px 30px 60px;
+      padding: 40px 30px 50px;
       border-radius: 28px;
       box-shadow: 0 15px 40px rgba(255,105,180,0.25);
       text-align: center;
       max-width: 420px;
       width: 90%;
       position: relative;
-      overflow: visible; /* ✅ FIX */
+      overflow: hidden;
       z-index: 2;
     }
 
@@ -42,25 +42,14 @@
       font-size: 36px;
       color: #ff9ecb;
       min-height: 60px;
-      margin-bottom: 10px;
-    }
-
-    .rose {
-      width: 220px;
-      margin: 20px auto 10px;
-      display: none;
-      animation: popUp 1s ease forwards;
-    }
-
-    @keyframes popUp {
-      from { opacity: 0; transform: scale(0.7); }
-      to { opacity: 1; transform: scale(1); }
+      margin-bottom: 15px;
     }
 
     .question {
       font-size: 24px;
       color: #ff6fae;
-      margin: 10px 0 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
       display: none;
     }
 
@@ -68,7 +57,6 @@
       display: none;
       gap: 16px;
       justify-content: center;
-      flex-wrap: wrap;
     }
 
     .btn {
@@ -80,7 +68,6 @@
       font-size: 18px;
       cursor: pointer;
       font-family: inherit;
-      min-width: 120px;
       box-shadow: 0 6px 15px rgba(255,105,180,0.35);
       transition: transform 0.2s ease;
     }
@@ -93,7 +80,19 @@
       background: #ffc1da;
     }
 
-    /* Fireworks canvas – clipped to card size */
+    .rose {
+      width: 220px;
+      margin: 25px auto 10px;
+      display: none;
+      animation: popUp 1s ease forwards;
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Fireworks canvas (inside card only) */
     canvas {
       position: absolute;
       inset: 0;
@@ -116,19 +115,6 @@
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-110vh); opacity: 0; }
     }
-
-    /* 📱 Mobile fixes */
-    @media (max-width: 480px) {
-      .rose {
-        width: 190px;
-      }
-    }
-
-    @media (max-height: 700px) {
-      .card {
-        padding-bottom: 80px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -140,7 +126,6 @@
 
     <div class="title" id="typing"></div>
 
-    <!-- Rose -->
     <svg class="rose" id="rose" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
       <rect x="96" y="120" width="8" height="140" fill="#2e8b57"/>
       <ellipse cx="70" cy="190" rx="35" ry="18" fill="#3cb371" transform="rotate(-20 70 190)"/>
@@ -174,17 +159,17 @@
         i++;
         setTimeout(typeText, 90);
       } else {
-        setTimeout(showContent, 500);
+        setTimeout(showRose, 500);
       }
     }
     typeText();
 
     const rose = document.getElementById("rose");
+    const music = document.getElementById("bgMusic");
     const question = document.getElementById("question");
     const buttons = document.getElementById("buttons");
-    const music = document.getElementById("bgMusic");
 
-    function showContent() {
+    function showRose() {
       rose.style.display = "block";
       question.style.display = "block";
       buttons.style.display = "flex";
@@ -203,7 +188,7 @@
     }
     setInterval(createHeart, 450);
 
-    // Fireworks (inside card)
+    // Fireworks (card only)
     const canvas = document.getElementById("fireworks");
     const ctx = canvas.getContext("2d");
     const card = document.querySelector(".card");
@@ -261,4 +246,3 @@
 
 </body>
 </html>
-
